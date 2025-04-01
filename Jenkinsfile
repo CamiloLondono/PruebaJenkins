@@ -18,6 +18,12 @@ pipeline {
         sh 'pip install -r requirements.txt'
       }
     }
+    
+    stage('Ejecutar Pruebas y Cobertura') {
+      steps {
+        sh 'source venv/bin/activate && pytest --cov=src --cov-report=xml'
+      }
+    }    
 
     stage('Análisis SonarQube') {
       steps {
